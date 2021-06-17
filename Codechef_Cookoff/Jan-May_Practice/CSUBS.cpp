@@ -18,26 +18,26 @@ int main() {
     ll t;
     cin >> t;
 
+    ll N = 1000006;
+    vector<bool> primes(N, true);
+    for(ll i=2;i*i<N;i++) {
+        for(ll j=i*i;j<N;j+=i) {
+            if(primes[i]==true)
+                primes[j] = false;
+        }
+    }
+
+    vector<ll> ans(N,0); ll count = 0;
+    for(ll i=5;i<N;i++) {
+        if(primes[i] && primes[i-2])
+            count++;
+        ans[i] = count;
+    }
+
     while(t--) {
-        ll n,k,ans = 0;
-        cin >> n >> k;
-        map<ll,ll> mp[k];
-        for(ll i=0;i<n;i++) {
-            ll num; cin >> num;
-            mp[i%k][num]++;
-        }
-
-        for(ll j=0;j<k;j++) {
-            ll total = 0, max_c = -1;
-            for(auto [num,ct] : mp[j]) {
-                total += ct;
-                max_c = max(max_c,ct);
-            }
-            c += (total - max_c);
-        }
-
-        cout << ans << "\n";
-         
+        ll n;
+        cin >> n;
+        cout << ans[n] << "\n";
     }
 
 
