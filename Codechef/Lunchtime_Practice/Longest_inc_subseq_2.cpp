@@ -28,6 +28,9 @@ int main() {
     vector<ll> dp(n+1,MAX);
     dp[0] = -MAX;
 
+    // d[i] will be the element at which a subsequence of length i terminates.
+    // If there are multiple such sequences, then we take the one that ends in the smallest element.
+
     for(ll i=0;i<n;i++) {
         ll j = upper_bound(dp.begin(), dp.end(),arr[i]) - dp.begin();
         if(dp[j-1]<arr[i] && arr[i]<dp[j])
