@@ -5,7 +5,8 @@ using namespace std;
 #define MOD 1000000007
  
 string make_binary(num,m) {
-    string str(m);
+    string str;
+    str.
     int i = m-1;
     while(num>0) {
         int x = num%2;
