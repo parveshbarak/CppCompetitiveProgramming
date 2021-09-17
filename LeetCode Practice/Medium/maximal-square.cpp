@@ -15,6 +15,7 @@ int maximalSquare(vector<vector<char>>& matrix) {
             res = max(res,dp[i][j]);
         }
     }
+    return res;
 }
  
 
