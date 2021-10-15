@@ -7,7 +7,6 @@ using namespace std;
 #define countBits(x) __builtin_popcount(x)
 #define MOD 1e9+7
 
-
 int main() {
 
 	ios_base::sync_with_stdio(false);
@@ -38,4 +37,3 @@ int main() {
     }
 	return 0;
 }
-
