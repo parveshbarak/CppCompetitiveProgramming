@@ -36,7 +36,7 @@ void io_file() {
 void code_here() {
     ll t; cin >> t;
     while(t--) {
-        int n 
+        
         
     }
 }

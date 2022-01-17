@@ -36,8 +36,28 @@ void io_file() {
 void code_here() {
     ll t; cin >> t;
     while(t--) {
-        int n 
-        
+        ll n,k; cin >> k >> n;
+        ll w = 1;
+        if(k==1) {
+            loop(i,1,n+1) cout << i << " ";
+        }
+        else if(k==2) {
+            loop(i,0,n) cout << 1 << " ";
+        } 
+        else {
+            loop(i,1,n+1) {
+                if(i>=k) {
+                    if(i&1) cout << 2;
+                    else cout << i-1;
+                } else {
+                    if(k&1) cout << i-1;
+                    else {
+                        if(n&1) 
+                    }
+                }
+            }
+        }
+        cout << "\n";
     }
 }
 

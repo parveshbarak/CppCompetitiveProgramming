@@ -36,7 +36,18 @@ void io_file() {
 void code_here() {
     ll t; cin >> t;
     while(t--) {
-        int n 
+        ll n,a; cin >> n >> a;
+        if(n==1) {
+            if(a&1) cout << "ODD\n";
+            else cout << "EVEN\n";
+        } else {
+            if(a&1) {
+                if(n&1) cout << "ODD\n";
+                else cout << "EVEN\n";
+            } else {
+                cout << "Impossible\n";
+            }
+        }
         
     }
 }
