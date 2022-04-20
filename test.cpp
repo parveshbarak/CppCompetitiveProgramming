@@ -1,37 +1,28 @@
-class Solution {
+class ATM {
 public:
-    string opa(string t,int a)    {
-        for(int i=1;i<t.size();i+=2) {
-             int num  = t[i]-'0';
-             num = (num+a)%10;
-             t[i]= num+'0';
-        }
-        return t;
+    vector<long long> arr;
+    unordered_map<long long,long long>mp;
+    ATM() {
+        arr.resize(5,0);
+        mp[0] = 20; mp[1] = 50; mp[2] = 100; mp[3] = 200; mp[4] = 500;
     }
-    string opb(string t,int k) {
-         k  = k%t.size();
-        reverse(t.begin(),t.end());
-        reverse(t.begin(),t.begin()+k);
-        reverse(t.begin()+k,t.end());
-        return t;
+    
+    void deposit(vector<long long> b) {
+        for(long long i=0;i<b.size();i++) arr[i] += b[i];
     }
-    string findLexSmallestString(string s, int a, int b) {
-        queue<string>q; vector<string>st;
-        set<string>visited; string ans;
-        visited.insert(s);
-        q.push(s);
-        while(!q.empty()) {
-          string t = q.front(); q.pop();
-            if(ans>t) ans = t;
-            string one = opa(t,a);
-            if(visited.find(one)==visited.end()) {
-                q.push(one); visited.insert(one);
-            }  
-            string two = opb(t,b);
-            if(visited.find(two)==visited.end()) {
-                q.push(two); visited.insert(two);
-            }  
+    
+    vector<long long> withdraw(long long amt) {
+        vector<long long> ans, ar = arr;
+        for(long long i=4;i>=0;i--) {
+            long long ct = amt/mp[i];
+            if(ar[i] >= ct) ar[i] -= ct;
+            else ct = ar[i], ar[i] = 0;
+            ans.push_back(ct);
+            amt -= mp[i]*ct;
         }
+        if(amt!=0) return {-1};
+        arr = ar;
+        reverse(ans.begin(),ans.end());
         return ans;
     }
 };
