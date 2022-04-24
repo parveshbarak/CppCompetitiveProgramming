@@ -37,20 +37,7 @@ void io_file() {
 void code_here() {
     ll t; cin >> t;
     while(t--) {
-    	ll n; cin >> n;
-    	vi arr(n); loop(i,0,n) cin >> arr[i];
-    	// vi pre = arr, post = arr;
-    	// for(int i=1;i<n;i++) pre[i] += pre[i-1];
-    	// for(int i=n-2;i>=0;i--) post[i] += post[i+1];
-    	ll i=1, j=n-2, wt1=arr[0], wt2=arr[n-1], ans = 0;
-    	while(i<=j) {
-    		// cout << wt1 << " " << wt2 << " ";
-    		if(wt1==wt2) ans = i+(n-j-1), wt1 += arr[i++], wt2 += arr[j--];
-    		else if(wt1>wt2) wt2 += arr[j--];
-    		else if(wt1<wt2) wt1 += arr[i++];
-    	}
-    	if(wt1==wt2) ans = n;
-    	cout << ans << "\n";
+    	
     }
 }
 

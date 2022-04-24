@@ -36,21 +36,27 @@ void io_file() {
 
 void code_here() {
     ll t; cin >> t;
+    ll c = 1;
     while(t--) {
-    	ll n; cin >> n;
-    	vi arr(n); loop(i,0,n) cin >> arr[i];
-    	// vi pre = arr, post = arr;
-    	// for(int i=1;i<n;i++) pre[i] += pre[i-1];
-    	// for(int i=n-2;i>=0;i--) post[i] += post[i+1];
-    	ll i=1, j=n-2, wt1=arr[0], wt2=arr[n-1], ans = 0;
-    	while(i<=j) {
-    		// cout << wt1 << " " << wt2 << " ";
-    		if(wt1==wt2) ans = i+(n-j-1), wt1 += arr[i++], wt2 += arr[j--];
-    		else if(wt1>wt2) wt2 += arr[j--];
-    		else if(wt1<wt2) wt1 += arr[i++];
-    	}
-    	if(wt1==wt2) ans = n;
-    	cout << ans << "\n";
+    	ll n,d; cin >> n >> d;
+        vector<ll> arr(n);
+        bool flag = true;
+        for(ll i=0;i<n;i++){
+            cin >> arr[i];
+            if(arr[i]>1) flag = false;
+        }
+        if( flag) {
+            ll trans = 0;
+            ll i = 0;
+            while(i<n) {
+                ll x = arr[i];
+                while(i<n && x==arr[i]) i++;
+                trans++;
+            }
+            if(arr[0]==0) trans--;
+            if(arr[n-1]==0) trans--;
+            cout << "Case #" << c++ << ": " << (trans+1)/2 << "\n";
+        }
     }
 }
 

@@ -34,23 +34,33 @@ void io_file() {
 }
 
 
+bool ispall(ll n) {
+    vector<int> arr;
+    while(n) {
+        arr.push_back(n%10);
+        n /= 10;
+    }
+    ll m = arr.size();
+    ll i=0,j=m-1;
+    while(i<j) {
+        if(arr[i] != arr[j]) return false;
+        i++; j--;
+    }
+    return true;
+}
+
 void code_here() {
     ll t; cin >> t;
+    ll c = 1;
     while(t--) {
-    	ll n; cin >> n;
-    	vi arr(n); loop(i,0,n) cin >> arr[i];
-    	// vi pre = arr, post = arr;
-    	// for(int i=1;i<n;i++) pre[i] += pre[i-1];
-    	// for(int i=n-2;i>=0;i--) post[i] += post[i+1];
-    	ll i=1, j=n-2, wt1=arr[0], wt2=arr[n-1], ans = 0;
-    	while(i<=j) {
-    		// cout << wt1 << " " << wt2 << " ";
-    		if(wt1==wt2) ans = i+(n-j-1), wt1 += arr[i++], wt2 += arr[j--];
-    		else if(wt1>wt2) wt2 += arr[j--];
-    		else if(wt1<wt2) wt1 += arr[i++];
-    	}
-    	if(wt1==wt2) ans = n;
-    	cout << ans << "\n";
+    	ll n,ans=0; cin >> n;
+        for(ll i=1;i*i<n;i++) {
+            if(n%i==0) {
+                if(ispall(i)) ans++;
+                if(ispall(n/i)) ans++;
+            }
+        }
+        cout << "Case #" << c++ << ": " << ans << "\n";
     }
 }
 
