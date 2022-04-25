@@ -9,6 +9,7 @@ using namespace std;
 #define inf 1e18
 #define pb emplace_back
 #define vi vector<ll>
+#define vii vector<vector<ll>>
 #define vs	vector<string>
 #define pii pair<ll,ll>
 #define vp vector<pair<ll,ll>>
@@ -91,11 +92,10 @@ void rec(vector<vector<ll>> &arr, int i, int j, string ans, int vis, bool &flag)
     }
 }
 
-
-void code_here() {
+void first_time() {
     ll t; cin >> t;
     while(t--) {
-    	ll r,c; cin >> r >> c;
+        ll r,c; cin >> r >> c;
         vector<vector<char>> ip(r,vector<char>(c));
         for(int i=0;i<r;i++) {
             for(int j=0;j<c;j++) cin >> ip[i][j];
@@ -123,6 +123,30 @@ void code_here() {
 
     }
 
+}
+
+
+
+
+
+
+void second_time() {
+    ll t; cin >> t;
+    ll c = 1;
+    while(t--) {
+        ll r,c; cin >> r >> c;
+        vector<vector<char>> ip;
+        loop(i,0,r) {
+            loop(i,0,c) cin >> ip[i][j];
+        }
+        vii arr()
+    }
+}
+
+
+void code_here() {
+    // first_time();
+    second_time();
 }
 
 

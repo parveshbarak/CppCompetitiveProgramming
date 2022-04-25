@@ -2,12 +2,13 @@
 #include<bits/stdc++.h>
 using namespace std;
 #define ll long long int
-#define ld	long double
+#define ld    long double
 #define mod 1000000007
 #define inf 1e18
 #define pb emplace_back
 #define vi vector<ll>
-#define vs	vector<string>
+#define vii vector<vector<ll>>
+#define vs    vector<string>
 #define pii pair<ll,ll>
 #define vp vector<pair<ll,ll>>
 #define mp  make_pair
@@ -37,7 +38,7 @@ void io_file() {
 void code_here() {
     ll t; cin >> t;
     while(t--) {
-    	
+        
     }
 }
 

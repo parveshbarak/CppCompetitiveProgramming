@@ -34,11 +34,11 @@ void io_file() {
 }
 
 
-void code_here() {
+void first_time() {
     ll t; cin >> t;
     ll c = 1;
     while(t--) {
-    	ll n,d; cin >> n >> d;
+        ll n,d; cin >> n >> d;
         vector<ll> arr(n);
         bool flag = true;
         for(ll i=0;i<n;i++){
@@ -58,6 +58,48 @@ void code_here() {
             cout << "Case #" << c++ << ": " << (trans+1)/2 << "\n";
         }
     }
+}
+
+
+
+ll dp[405][405][2];
+ll rec(vector<ll>&arr, ll l, ll r, ll x, ll d) {
+    if(l>=r) return 0;
+    if(dp[l][r][x] != -1) return dp[l][r][x];
+    ll ans = 1e9+10;
+    if(!x) {
+        ll a1 = rec(arr,l+1,r,0,d);
+        ll a2 = rec(arr,l+1,r,1,d);
+        ans = min(ans, a1+min(abs(arr[l]-arr[l+1]), d-abs(arr[l]-arr[l+1])));
+        ans = min(ans, a2+min(abs(arr[l]-arr[r]), d-abs(arr[l]-arr[r])));
+    } else {
+        ll a1 = rec(arr,l,r-1,0,d);
+        ll a2 = rec(arr,l,r-1,1,d);
+        ans = min(ans, a1+min(abs(arr[r]-arr[l]), d-abs(arr[r]-arr[l])));
+        ans = min(ans, a2+min(abs(arr[r]-arr[r-1]), d-abs(arr[r]-arr[r-1])));
+    }
+    return dp[l][r][x] = ans;
+}
+
+void second_time() {
+    ll t; cin >> t;
+    ll c = 1;
+    while(t--) {
+        ll n,d; cin >> n >> d;
+        vector<ll> arr(n);
+        for(ll i=0;i<n;i++) cin >> arr[i];
+        memset(dp, -1, sizeof(dp));
+        ll ans = INT_MAX;
+        ans = min(ans, rec(arr,0,n-1,0,d) + min(arr[0],d-arr[0]));
+        ans = min(ans, rec(arr,0,n-1,1,d) + min(arr[n-1], d-arr[n-1]));
+        cout << "Case #" << c++ << ": " << ans << "\n";
+    }
+}
+
+
+void code_here() {
+    // first_time()
+    second_time();
 }
 
 
