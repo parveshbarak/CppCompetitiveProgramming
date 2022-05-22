@@ -2,13 +2,13 @@
 #include<bits/stdc++.h>
 using namespace std;
 #define ll long long int
-#define ld    long double
+#define ld	long double
 #define mod 1000000007
 #define inf 1e18
 #define pb emplace_back
 #define vi vector<ll>
 #define vii vector<vector<ll>>
-#define vs    vector<string>
+#define vs	vector<string>
 #define pii pair<ll,ll>
 #define vp vector<pair<ll,ll>>
 #define mp  make_pair
@@ -37,11 +37,14 @@ void io_file() {
 
 void code_here() {
     ll t; cin >> t;
+    ll c = 1;
     while(t--) {
-        ll x; cin >> x;
-        ll a = x/3, b = x/5, c = x/15;
-        a = 3*(a*(a+1)/2), b = 5*(b*(b+1)/2) , c = 15*(c*(c+1)/2);
-        cout << a+b-c << "\n";
+        ll n,x,y; cin >> n >> x >> y;
+        ll sum = n*(n+1)/2;
+        string ans = "IMPOSSIBLE";
+        if(sum%(x+y)==0) ans = "POSSIBLE";
+    	cout << "Case #" << c++ << ": ";
+    	cout << fixed << setprecision(6) << ans << "\n";
     }
 }
 
@@ -50,7 +53,7 @@ int main() {
     
     clock_t start = clock();
     
-    io_file();
+    // io_file();
     code_here();
     
     clock_t end = clock();
