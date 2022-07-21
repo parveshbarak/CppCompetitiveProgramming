@@ -1,60 +1,41 @@
-
-#include<bits/stdc++.h>
-using namespace std;
-#define ll long long int
-#define ld    long double
-#define mod 1000000007
-#define inf 1e18
-#define pb emplace_back
-#define vi vector<ll>
-#define vii vector<vector<ll>>
-#define vs    vector<string>
-#define pii pair<ll,ll>
-#define vp vector<pair<ll,ll>>
-#define mp  make_pair
-#define pq_max priority_queue<ll>
-#define pq_min priority_queue<ll,vi,greater<ll> >
-#define ff first
-#define ss second
-#define mid(l,r) (l+(r-l)/2)
-#define loop(i,a,b) for(int i=(a);i<(b);i++)
-#define revloop(i,a,b) for(int i=(a);i>=(b);i--)
-#define printarr(arr,a,b) for(int z=(a);z<=(b);z++) cout<<(arr[z])<<" ";cout<<endl;
-
-
-
-void io_file() {
-    ios_base::sync_with_stdio(0); 
-    cin.tie(0); 
-    cout.tie(0);
-    #ifndef ONLINE_JUDGE
-        freopen("/home/parvesh/Desktop/Codes/io_files/input.txt","r", stdin);
-        freopen("/home/parvesh/Desktop/Codes/io_files/output.txt","w", stdout);
-        freopen("/home/parvesh/Desktop/Codes/io_files/error.txt","w", stderr);
-    #endif
-}
-
-
-void code_here() {
-    ll t; cin >> t;
-    while(t--) {
-        ll x; cin >> x;
-        ll a = x/3, b = x/5, c = x/15;
-        a = 3*(a*(a+1)/2), b = 5*(b*(b+1)/2) , c = 15*(c*(c+1)/2);
-        cout << a+b-c << "\n";
-    }
-}
-
-
-int main() {
-    
-    clock_t start = clock();
-    
-    io_file();
-    code_here();
-    
-    clock_t end = clock();
-    cerr<<endl<<endl<<"Executed In: "<<double(end - start) / CLOCKS_PER_SEC*1000<<" ms";
-    
-    return 0;
-}
+long long colosseum(int N,vector<int> A) {
+        int sz = A.size();
+        vector<long long> first(A.size() , 0) , last(A.size() , 0);
+        priority_queue<long long> pq; 
+        int n = A.size()/3;
+        first[0] = A[0];
+        pq.push(-A[0]);
+        for(int i = 1;i<n;i++){
+            first[i] += first[i-1] + A[i];
+            pq.push(-A[i]);
+        }
+        for(int i = n;i<2*n;i++){
+            first[i] = first[i-1];
+            if(first[i] < first[i] + A[i] + pq.top()){
+                first[i] = first[i] + A[i] + pq.top();
+                pq.pop();
+                pq.push(-A[i]);
+            }
+        }
+         priority_queue<long long> q; 
+        last[A.size()-1] = A.back();
+        q.push(A.back());
+        for(int  i = A.size()-2;i>=2*n;i--){
+            last[i] = last[i+1] + A[i];
+            q.push(A[i]);
+        }
+        for(int i = 2*n-1;i>=n;i--){
+             last[i] = last[i+1];
+             if(last[i] > last[i] + A[i] - q.top()){
+                 last[i] = last[i] + A[i] - q.top();
+                 q.pop();
+                 q.push(A[i]);
+             }
+        }
+        long long ans = INT_MIN;
+        for(int i = n;i<=2*n;i++){
+            ans = max(ans , first[i-1] - last[i]);
+        }
+        return ans;
+        
+   }
